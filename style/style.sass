@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap')
+
+$blue: #0065FC
+$lightBlue: #DEEBFF
+$grey: #F2F2F2
+$darkGrey: #d9d9d9
+
+$containerMaxWidth: 1440px
+
+body
+  font-family: "Raleway", "Sans serif"
+  margin: 0
+
+a
+  color: inherit
+  text-decoration: none
+  
+.header
+  display: grid
+  align-items: center
+  max-width: $containerMaxWidth
+  margin: auto
+  &Img
+    grid-area: logo
+    padding: 0 2rem
+    height: 2.813rem
+  &Nav
+    display: flex
+    align-items: center
+    grid-area: navbar
+    &Link
+      padding: 2rem
+      font-weight: 500
+      text-align: center
+      transition-duration: .1s
+      border-top: 3px transparent solid
+      border-bottom: 3px transparent solid
+      &[data-active='true']
+        color: $blue
+      &:hover
+        color: $blue
+  &Signup
+    display: flex
+    align-items: center
+    grid-area: button
+    padding: 2rem
+    color: $blue
+    font-weight: 600
+
+@media screen and ( min-width: 601px ) // Desktop
+  .header
+    grid-template-columns: auto 1fr auto auto
+    grid-template-areas: "logo . navbar button"
+    &Nav
+      &Link
+        &[data-active='true']
+          border-top: 3px solid $blue
+        &:hover
+          border-top: 3px solid $blue
+
+@media screen and ( max-width: 600px ) // Phone
+  .header
+    grid-template-columns: auto 1fr auto
+    grid-template-areas: "logo . button" "navbar navbar navbar"
+    &img
+      order: 0
+    &Signup
+      order: 1
+    &Nav
+      order: 2
+      &Link
+        border-top: none
+        border-bottom: 3px solid $grey
+        width: 50%
+        &[data-active='true']
+          border-bottom-color: $blue
+        &:hover
+          border-bottom-color: $blue
+
+.main
+  max-width: $containerMaxWidth
+  margin: auto
+  padding: 0 2rem
+  box-sizing: border-box
+
+.search
+  &Header
+    &Title
+      margin-bottom: 0.5rem
+    &Subtitle
+      margin-top: 0
+  &Form
+    display: inline-flex
+    max-width: 100%
+    overflow: auto
+    &Wrapicon
+      background-color: $grey
+      padding: 1rem 1.25rem
+      border-radius: 1rem 0 0 1rem
+      text-align: center
+      &Icon
+        margin-left: .1rem
+    &Searchinput
+      border-right: none
+      border-left: none
+      border-top: $grey 1px solid
+      border-bottom: $grey 1px solid
+      padding: 0 1.5rem
+      box-sizing: border-box
+      width: 14rem
+      font-size: 1rem
+      font-weight: bold
+      font-family: "Raleway", "Sans serif"
+      &::placeholder
+        font-family: "Raleway", "Sans serif"
+        font-size: 1rem
+        color: #00000069
+    &Submitinput
+      background-color: $blue
+      color: white
+      font-weight: bold
+      border: none
+      border-radius: 0 1rem 1rem 0
+      padding: 0 1.5rem
+      font-family: "Raleway", "Sans serif"
+      font-size: 1rem
+      cursor: pointer
+  &Filters
+    display: flex
+    margin-top: 2rem
+    flex-wrap: wrap
+    &Title
+      margin: 0 2rem 1rem 0
+      display: flex
+      align-items: center
+    &Filter
+      display: flex
+      align-items: center
+      margin-right: 2rem
+      border: 2px solid $darkGrey
+      border-radius: 2rem
+      margin-bottom: 1rem
+      cursor: pointer
+      transition-duration: .1s
+      font-weight: bold
+      &:last-child
+        margin-right: 0
+      &:hover
+        background-color: #f3f8ff
+        transform: scale(1.015)
+      &Wrapicon
+        background-color: $lightBlue
+        border-radius: 100%
+        height: 3rem
+        width: 3rem
+        min-height: 3.5rem
+        min-width: 3.5rem
+        display: flex
+        align-items: center
+        justify-content: center
+        margin: -2px
+        &Icon
+          color: blue
+      &Title
+        margin: 0 1rem
+  &Result
+    display: flex
+    align-items: center
+    margin: 1rem 0 2rem 0
+    &Wrapicon
+      height: 2rem
+      width: 2rem
+      min-height: 2rem
+      min-width: 2rem
+      border: solid 1px $darkGrey
+      border-radius: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      margin-right: 1rem
+      &Icon
+        color: $blue
+    &Text
+      margin: 0
+
+@media screen and ( max-width: 600px ) // Phone
+  .search
+    &Form
+      display: flex
+      width: 100%
+      &Searchinput
+        flex: 1
+      &Submitinput
+        &Text
+          display: none
+        &Icon
+          display: block
+
+@media screen and ( max-width: 650px ) // Phone+
+  .search
+    &Filters
+      &Title
+        width: 100%
+      &Filter
+        margin-right: 1rem
+
+@media screen and ( min-width: 601px ) // Desktop
+  .search
+    &Form
+      &Submitinput
+        &Text
+          display: block
+        &Icon
+          display: none!important
+
+.hostingWrapper
+  background-color: $grey
+  border-radius: 1.5rem
+  padding: 2rem
+
+.hosting
+  display: grid
+  column-gap: 2rem
+  grid-template-columns: 6fr 3fr
+  &Main
+    @extend .hostingWrapper
+    display: grid
+    column-gap: 2rem
+    row-gap: 2rem
+    &Header
+      grid-column: 1 / -1
+      &Title
+        margin: 0
+    &Card
+      background-color: white
+      padding: 0.375rem
+      border-radius: 1.25rem
+      box-shadow: 0 0 16px #0000002e
+      transition-duration: .1s
+      cursor: pointer
+      box-sizing: border-box
+      height: 100%
+      &:hover
+        transform: scale(1.02)
+      &Figure
+        margin: 0
+        &Img
+          height: 7rem
+          object-fit: cover
+          max-width: 100%
+          width: 100%
+          max-height: 100%
+          border-radius: 1rem 1rem 0 0
+        &Caption
+          &Title
+            margin: .25rem .75rem 0 .75rem
+      &Desc
+        margin: .25rem .75rem .25rem .75rem
+        &Price
+          font-weight: bold
+      &Grade
+        margin: 0 .75rem .25rem .75rem
+        &Icon[data-active="true"]
+          color: $blue
+        &Icon[data-active="false"]
+          color: $darkGrey
+    &Viewmore
+      font-weight: bold
+  &Popular
+    @extend .hostingWrapper
+    display: grid
+    row-gap: 2rem
+    align-items: start
+    grid-template-rows: auto repeat(3, 1fr)
+    &Title
+      margin: 0
+      display: flex
+      justify-content: space-between
+    &Wrapcontent
+      display: flex
+      align-items: stretch
+      height: 100%
+      overflow: auto
+      &Wrapimg
+        position: relative
+        min-height: 100%
+        width: 33%
+        min-width: 33%
+        max-width: 33%
+        &Img
+          border-radius: 1rem 0 0 1rem
+          position: absolute
+          width: 100%
+          height: 100%
+          object-fit: cover
+      &Content
+        display: flex
+        flex-direction: column
+        &Whitespace
+          flex: 1
+    &hostingMainCard
+      height: 8.75rem
+
+@media (max-width: 1440px)
+  .hosting
+    grid-template-columns: 1fr
+    row-gap: 2rem
+    &Popular
+      grid-template-columns: repeat(3, 1fr)
+      grid-template-rows: auto 10rem
+      column-gap: 2rem
+      grid-row-start: 1
+      &Title
+        grid-column: 1 / -1
+
+@media (min-width: 925px)
+  .hosting
+    &Main
+      grid-template-columns: repeat(3, 1fr)
+
+@media (max-width: 925px) and (min-width: 650px)
+  .hosting
+    &Main
+      grid-template-columns: 1fr 1fr
+ 
+@media (max-width: 650px)
+  .hosting
+    &Main
+      grid-template-columns: 1fr
+
+@media (max-width: 1000px)
+  .hosting
+    &Popular
+      grid-template-columns: 1fr
+      grid-template-rows: auto repeat(3, 9rem)
+
+.activity
+  display: grid
+  column-gap: 2rem
+  margin: 4rem 0
+  &Title
+    grid-column: 1 / -1 
+  &Card
+    box-shadow: 0 0 20px #0000002e
+    border-radius: 1rem
+    overflow: hidden
+    display: flex
+    flex-direction: column
+    transition-duration: .1s
+    &:hover
+      transform: scale(1.01)
+    &Wrapimg
+      position: relative
+      flex: 1
+      &Img
+        position: absolute
+        height: 100%
+        width: 100%
+        object-fit: cover
+    &Title
+      margin: 1.2rem 1.5rem
+
+@media (min-width: 1100px)
+  .activity
+    grid-template-columns: repeat(4, 1fr)
+    grid-template-rows: auto 14rem 2rem 2rem 2rem 14rem
+    &Card
+      &1
+        grid-row: 2 / 7
+        grid-column: 1 / 2
+      &2
+        grid-column: 2 / 3
+        grid-row: 2 / 5
+      &3
+        grid-column: 3 / 4
+        grid-row: 2 / 7
+      &4
+        grid-column: 4 / 5
+        grid-row: 2 / 3
+      &5
+        grid-column: 2 / 3
+        grid-row: 6 / 7
+      &6
+        grid-column: 4 / 5
+        grid-row: 4 / 7
+
+@media (max-width: 1100px)
+  .activity
+    row-gap: 2rem
+    grid-template-columns: repeat(3, 1fr)
+    grid-template-rows: auto 12rem 12rem
+
+@media (max-width: 925px)
+  .activity
+    row-gap: 2rem
+    grid-template-columns: repeat(2, 1fr)
+    grid-template-rows: auto 12rem 12rem 12rem
+
+@media (max-width: 650px)
+  .activity
+    row-gap: 2rem
+    grid-template-columns: 1fr
+    grid-template-rows: auto 12rem 12rem 12rem 12rem 12rem 12rem
+
+
+.footer
+  background-color: $grey
+  width: 100%
+  &Columnwrapper
+    display: flex
+    max-width: 100%
+    width: $containerMaxWidth
+    margin: auto
+    padding: 0 2rem
+    box-sizing: border-box
+    &Column
+      width: 30%
+      padding: 2rem 2rem
+      &Link
+        display: block
+        margin: 1rem 0
+        &:hover
+          text-decoration: underline
+
+@media (max-width: 750px)
+  .footer
+    &Columnwrapper
+      flex-direction: column
+      padding: 2rem
+      &Column
+        width: 100%
+        padding: 0
+        margin: 1rem 0
+        &:first-child
+          margin-top: 0
+        &:last-child
+          margin-bottom: 0
+        &Title
+          margin: 0
+        &Link
+          &:last-child
+            margin-bottom: 0
